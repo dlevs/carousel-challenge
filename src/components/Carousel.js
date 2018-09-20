@@ -39,9 +39,10 @@ class Carousel extends Component {
 
         if (!currentSlide) return;
 
-        const { left } = currentSlide.getBoundingClientRect();
+        const rectSlide = currentSlide.getBoundingClientRect();
+        const rectTrack = track.getBoundingClientRect();
 
-        track.scrollLeft = track.scrollLeft + left;
+        track.scrollLeft += (rectSlide.left - rectTrack.left);
     }
 
     componentDidMount() {
