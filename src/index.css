@@ -12,6 +12,10 @@ body {
   box-sizing: inherit;
 }
 
+a {
+  color: #428ff4;
+}
+
 button {
   appearance: none;
   background: none;

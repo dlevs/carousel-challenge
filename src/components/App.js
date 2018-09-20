@@ -59,6 +59,7 @@ class App extends Component {
           </div>
         </form>
         <Carousel slides={slides} />
+        <a href="https://github.com/dlevs/carousel-challenge">View source code</a>
       </Fragment>
     );
   }
