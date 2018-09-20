@@ -2,31 +2,27 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import './Carousel.css';
 
-let uniqueSlideId = 0;
-
-const ButtonNext = ({ onClick }) => <button onClick={onClick}>&lt;</button>
-const ButtonPrevious = ({ onClick }) => <button onClick={onClick}>&gt;</button>
-
 class Carousel extends Component {
+    static defaultProps = {
+        slides: [],
+        slidesToShow: 3,
+    };
+
     static propTypes = {
-        slidesToShow: PropTypes.number.isRequired,
+        slides: PropTypes.arrayOf(PropTypes.object),
+        slidesToShow: PropTypes.number,
     };
 
     state = {
-        slides: [
-            { id: uniqueSlideId++, text: 'Slide 1' },
-            { id: uniqueSlideId++, text: 'Slide 2' },
-            { id: uniqueSlideId++, text: 'Slide 3' },
-            { id: uniqueSlideId++, text: 'Slide 4' },
-        ],
         currentSlideIndex: 0
-    };
+    }
 
     carouselTrack = createRef();
 
     goToNextSlide = () => {
-        this.setState(({ slides, currentSlideIndex }) => ({
-            currentSlideIndex: Math.min(currentSlideIndex + 1, slides.length)
+        const { slides } = this.props;
+        this.setState(({ currentSlideIndex }) => ({
+            currentSlideIndex: Math.min(currentSlideIndex + 1, slides.length - 1)
         }));
     }
 
@@ -36,24 +32,41 @@ class Carousel extends Component {
         }));
     }
 
-    componentDidUpdate() {
+    scrollToCurrentSlide = () => {
         const track = this.carouselTrack.current;
         const { currentSlideIndex } = this.state;
         const currentSlide = track.children[currentSlideIndex];
         const { left } = currentSlide.getBoundingClientRect();
 
-        console.log(currentSlide.getBoundingClientRect())
-
         track.scrollLeft = track.scrollLeft + left;
     }
 
+    componentDidMount() {
+        this.scrollToCurrentSlide();
+        // In production app, I'd consider using lodash/debounce here:
+        window.addEventListener('resize', this.scrollToCurrentSlide);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.scrollToCurrentSlide);
+    }
+
+    componentDidUpdate() {
+        this.scrollToCurrentSlide();
+    }
+
     render() {
-        const { slidesToShow } = this.props;
-        const { slides, currentSlideIndex } = this.state;
+        const { slidesToShow, slides } = this.props;
+        const { currentSlideIndex } = this.state;
         return (
             <div className="carousel">
-                {currentSlideIndex}
-                <ButtonNext onClick={this.goToPreviousSlide}/>
+                <button
+                    onClick={this.goToPreviousSlide}
+                    title="Previous Slide"
+                    disabled={currentSlideIndex === 0}
+                >
+                    &lt;
+                </button>
                 <div className="carousel--track" ref={this.carouselTrack}>
                     {slides.map(({ id, text }) =>
                         <div
@@ -67,7 +80,13 @@ class Carousel extends Component {
                         </div>
                     )}
                 </div>
-                <ButtonPrevious onClick={this.goToNextSlide}/>
+                <button
+                    onClick={this.goToNextSlide}
+                    title="Next Slide"
+                    disabled={currentSlideIndex === slides.length - slidesToShow}
+                >
+                    &gt;
+                </button>
             </div>
         )
     }
