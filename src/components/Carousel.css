@@ -3,15 +3,24 @@
 }
 
 .carousel--track {
-  display: flex;
-  width: 100%;
-  overflow: auto;
+  white-space: nowrap;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  /*
+    Using "overflow: scroll;" would be more accessible as user can choose to
+    scroll the carousel via mouse/ trackpad. This would need additional
+    onScroll handlers to ensure the component's "currentSlideIndex" state is in sync.
+
+    It seems out of the scope of this task, but a nice to consider in real world project.
+  */
+  overflow: hidden;
 }
 
 .slide {
+  display: inline-block;
   padding: 30px;
-  flex: 1;
+  scroll-snap-align: start;
 }
 
 .slide__content {

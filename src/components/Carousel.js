@@ -36,6 +36,9 @@ class Carousel extends Component {
         const track = this.carouselTrack.current;
         const { currentSlideIndex } = this.state;
         const currentSlide = track.children[currentSlideIndex];
+
+        if (!currentSlide) return;
+
         const { left } = currentSlide.getBoundingClientRect();
 
         track.scrollLeft = track.scrollLeft + left;
@@ -72,7 +75,7 @@ class Carousel extends Component {
                         <div
                             className="slide"
                             key={id}
-                            style={{ minWidth: `${100 / slidesToShow}%` }}
+                            style={{ width: `${100 / slidesToShow}%` }}
                         >
                             <div className="slide__content">
                                 {text}
