@@ -1,5 +1,7 @@
 # Carousel Coding Challenge
 
+This is a small carousel coding challenge, bootstrapped off of [create-react-app](https://github.com/facebook/create-react-app).
+
 [View the hosted version.](https://dlevs.github.io/carousel-challenge/build/index.html)
 
 There are a few improvements I'm conscious can be made:
