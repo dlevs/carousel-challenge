@@ -1,7 +1,12 @@
 .carousel {
+
+}
+
+.carousel--track {
   display: flex;
   width: 100%;
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 .slide {
@@ -12,4 +17,5 @@
 .slide__content {
   border: 1px solid #333;
   padding: 30px;
+  text-align: center;
 }
