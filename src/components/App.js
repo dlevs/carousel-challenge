@@ -15,9 +15,12 @@ class App extends Component {
   }
 
   handleSlideTextFormSubmit = (event) => {
+    event.preventDefault();
+
     const { slideTextInputValue } = this.state;
 
-    event.preventDefault();
+    if (!slideTextInputValue) return;
+
     this.setState(({ slides }) => ({
       slides: slides.concat({
         id: uniqueSlideId++,
