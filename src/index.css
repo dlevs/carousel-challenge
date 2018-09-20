@@ -1,10 +1,37 @@
+/* Base styles */
 body {
-  margin: 0;
+  margin: 30px;
   padding: 0;
   font-family: sans-serif;
   box-sizing: border-box;
+  color: #333;
+  border-color: #333;
 }
 
 * {
   box-sizing: inherit;
+}
+
+button {
+  appearance: none;
+  background: none;
+  border: none;
+}
+
+/* Utility classes */
+.btn--bordered {
+  border: 1px solid;
+  padding: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
+.flex-1 {
+  flex: 1;
 }

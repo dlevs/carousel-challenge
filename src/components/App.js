@@ -32,15 +32,28 @@ class App extends Component {
     return (
       <Fragment>
         <form onSubmit={this.handleSlideTextFormSubmit}>
-          <label htmlFor="input-slide-text">Slide text</label>
-          <input
-            id="input-slide-text"
-            type="text"
-            placeholder="Enter a title"
-            value={slideTextInputValue}
-            onChange={this.handleSlideTextInputChange}
-          />
-          <button type="submit">Add new slide</button>
+          <div className="slide-text-form--content">
+            <label
+              htmlFor="input-slide-text"
+              className="visually-hidden"
+            >
+              New slide text
+            </label>
+            <input
+              id="input-slide-text"
+              type="text"
+              placeholder="Enter a title"
+              className="flex-1"
+              value={slideTextInputValue}
+              onChange={this.handleSlideTextInputChange}
+            />
+            <button
+              type="submit"
+              className="btn--bordered"
+            >
+              Add New Slide
+            </button>
+          </div>
         </form>
         <Carousel slides={slides} />
       </Fragment>

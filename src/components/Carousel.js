@@ -67,10 +67,11 @@ class Carousel extends Component {
                     onClick={this.goToPreviousSlide}
                     title="Previous Slide"
                     disabled={currentSlideIndex === 0}
+                    className="btn-navigation"
                 >
                     &lt;
                 </button>
-                <div className="carousel--track" ref={this.carouselTrack}>
+                <div className="carousel__track" ref={this.carouselTrack}>
                     {slides.map(({ id, text }) =>
                         <div
                             className="slide"
@@ -87,6 +88,7 @@ class Carousel extends Component {
                     onClick={this.goToNextSlide}
                     title="Next Slide"
                     disabled={currentSlideIndex === slides.length - slidesToShow}
+                    className="btn-navigation"
                 >
                     &gt;
                 </button>
