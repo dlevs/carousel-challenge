@@ -1,6 +1,6 @@
 # Carousel Coding Challenge
 
-[View the hosted version.](https://dlevs.github.io/carousel-challenge/build)
+[View the hosted version.](https://dlevs.github.io/carousel-challenge/build/index.html)
 
 There are a few improvements I'm conscious can be made:
 
