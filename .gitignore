@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+# /build - for demo purposes, this is being committed to the repository
 
 # misc
 .DS_Store
